@@ -68,7 +68,7 @@ public class ExtPlaneTCPSender extends StoppableThread {
 
 
         } catch (Exception e) {
-            System.out.println("ERROR sending data." +  e.toString();
+            System.out.println("ERROR sending data." +  e.toString());
         } finally {
 
         }

@@ -7,32 +7,32 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.log4j.Logger;
+// import org.apache.log4j.Logger;
 import org.cutre.soft.epi.data.DataRefRepository;
 
 /**
- * 
+ *
  * Copyright (C) 2015  Pau G.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author Pau G.
  */
 public class ExtPlaneTCPReceiver extends StoppableThread {
 
-    private static final Logger LOGGER = Logger.getLogger(ExtPlaneTCPReceiver.class);
-    
+//     private static final Logger LOGGER = Logger.getLogger(ExtPlaneTCPReceiver.class);
+
     private Socket socket;
     private ExecutorService pool;
     private DataRefRepository repository;
@@ -64,9 +64,9 @@ public class ExtPlaneTCPReceiver extends StoppableThread {
                 valor = inFromServer.readLine();
                 pool.execute(new InputHandler(this.repository, valor));
             }
-            
+
         } catch (IOException e) {
-            LOGGER.error("Error getting data from server.",e);
+            System.out.println("Error getting data from server."+e.toString());
         } finally {
             pool.shutdown();
         }

@@ -26,7 +26,7 @@ import org.cutre.soft.exception.ConnectionException;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the Free Software Foundation + e.toString())ither version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -123,7 +123,7 @@ public class ExtPlaneInterface {
             this.startSending();
             this.startReceiving();
         } catch(Exception e) {
-            System.out.println("Error starting services.", e);
+            System.out.println("Error starting services." + e.toString());
             this.stopReceiving();
             this.stopSending();
             throw e;
@@ -148,11 +148,11 @@ public class ExtPlaneInterface {
         try {
             socket = new Socket(server, port);
         } catch (UnknownHostException e) {
-            System.out.println("[ExtPlaneInterface::connect] Error connecting host " + server, e);
-            throw new ConnectionException("Error connecting host -> " + server, e);
+            System.out.println("[ExtPlaneInterface::connect] Error connecting host " + server + e.toString());
+            throw new ConnectionException("Error connecting host -> " + server + e.toString());
         } catch (IOException e) {
-            System.out.println("[ExtPlaneInterface::connect] Error connecting host " + server, e);
-            throw new ConnectionException("Error connecting host -> " + server, e);
+            System.out.println("[ExtPlaneInterface::connect] Error connecting host " + server + e.toString());
+            throw new ConnectionException("Error connecting host -> " + server + e.toString());
         }
     }
 

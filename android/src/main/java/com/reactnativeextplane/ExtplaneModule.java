@@ -14,7 +14,7 @@ public class ExtplaneModule extends NativeExtplaneSpec {
     public ExtplaneModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
-    
+
     private ExtPlaneInterface iface = null;
 
     @Override

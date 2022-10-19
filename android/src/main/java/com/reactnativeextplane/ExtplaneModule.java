@@ -2,15 +2,20 @@ package com.reactnativeextplane;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 import org.cutre.soft.ExtPlaneInterface;
+import org.cutre.soft.epi.data.DataRef;
+import org.cutre.soft.epi.util.Constants;
+import org.cutre.soft.epi.util.Observer;
 
 
 @ReactModule(name = ExtplaneModule.NAME)
-public class ExtplaneModule extends NativeExtplaneSpec {
+public class ExtplaneModule extends ReactContextBaseJavaModule {
     public static final String NAME = "Extplane";
 
     public ExtplaneModule(ReactApplicationContext reactContext) {
@@ -25,52 +30,52 @@ public class ExtplaneModule extends NativeExtplaneSpec {
         return NAME;
     }
 
-     @Override
-     public void start(String ip, int port) throws Exception {
+    @ReactMethod
+    public void start(String ip, int port) throws Exception {
        iface = new ExtPlaneInterface(ip, port);
        iface.start();
      }
 
-     @Override
-     public void includeDataRef(String dataref, Float precision) {
+    @ReactMethod
+    public void includeDataRef(String dataref, Float precision) {
        if (iface != null) {
          iface.includeDataRef(dataref, precision);
        }
      }
 
-     @Override
-     public void excludeDataRef(String dataref) {
+    @ReactMethod
+    public void excludeDataRef(String dataref) {
        if (iface != null) {
          iface.excludeDataRef(dataref);
        }
      }
 
-     @Override
-     public String[] getDataRefValue(String dataref) {
+    @ReactMethod
+    public String[] getDataRefValue(String dataref) {
        if (iface != null) {
          return iface.getDataRefValue(dataref);
        }
        return new String[0];
      }
 
-     @Override
-     public Constants.DataType getDataRefType(String dataref) {
+    @ReactMethod
+    public Constants.DataType getDataRefType(String dataref) {
        if (iface != null) {
          return iface.getDataRefType(dataref);
        }
        return null;
      }
 
-     @Override
-     public DataRef getDataRef(String dataref) {
+    @ReactMethod
+    public DataRef getDataRef(String dataref) {
        if (iface != null) {
          return iface.getDataRef(dataref);
        }
        return null;
      }
 
-     @Override
-     public void observeDataRef(String dataref, Callback callback) {
+    @ReactMethod
+    public void observeDataRef(String dataref, Callback callback) {
        if (iface != null) {
          Observer<DataRef> s = new Observer<DataRef>() {
            public void update(DataRef object) {
@@ -81,11 +86,11 @@ public class ExtplaneModule extends NativeExtplaneSpec {
        }
      }
 
-     @Override
-     public void unObserveDataRef(String dataref) {
-       if (iface != null) {
-         iface.unObserveDataRef(dataref);
-       }
-     }
+//    @ReactMethod
+//    public void unObserveDataRef(String dataref) {
+//       if (iface != null) {
+//         iface.unObserveDataRef(dataref);
+//       }
+//     }
 
 }

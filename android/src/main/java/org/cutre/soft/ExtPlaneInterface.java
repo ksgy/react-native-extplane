@@ -149,10 +149,10 @@ public class ExtPlaneInterface {
             socket = new Socket(server, port);
         } catch (UnknownHostException e) {
             System.out.println("[ExtPlaneInterface::connect] Error connecting host " + server + e.toString());
-            throw new ConnectionException("Error connecting host -> " + server + e.toString());
+            throw new ConnectionException("Error connecting host -> " + server, e);
         } catch (IOException e) {
             System.out.println("[ExtPlaneInterface::connect] Error connecting host " + server + e.toString());
-            throw new ConnectionException("Error connecting host -> " + server + e.toString());
+            throw new ConnectionException("Error connecting host -> " + server, e);
         }
     }
 

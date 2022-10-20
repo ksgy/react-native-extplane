@@ -19,6 +19,8 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.Arguments;
 
+import java.util.Arrays;
+
 
 @ReactModule(name = ExtplaneModule.NAME)
 public class ExtplaneModule extends ReactContextBaseJavaModule {
@@ -104,7 +106,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
 
     private void send(DataRef obj) {
       WritableMap params = Arguments.createMap();
-      params.putString("datarefValue", obj.toString());
+      params.putString(obj.getName(), Arrays.toString(obj.getValue()));
       sendEvent(this.mReactContext, "DatarefUpdate", params);
     }
 

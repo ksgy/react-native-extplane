@@ -24,8 +24,8 @@ export function getDataRef(dataRefName: string) {
   return Extplane.getDataRef(dataRefName);
 }
 
-export function observeDataRef(dataRefName: string, callback: Function) {
-  Extplane.observeDataRef(dataRefName, callback);
+export function observeDataRef(dataRefName: string) {
+  Extplane.observeDataRef(dataRefName);
 }
 
 export function unObserveDataRef(dataRefName: string) {

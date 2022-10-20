@@ -7,7 +7,7 @@ export interface Spec extends TurboModule {
   getDataRefValue(dataRefName: string): string;
   getDataRefType(dataRefName: string): object;
   getDataRef(dataRefName: string): string;
-  observeDataRef(dataRefName: string, callback: Function): void;
+  observeDataRef(dataRefName: string): void;
   unObserveDataRef(dataRefName: string): void;
 }
 

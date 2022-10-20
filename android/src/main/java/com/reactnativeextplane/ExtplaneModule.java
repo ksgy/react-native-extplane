@@ -24,11 +24,10 @@ import com.facebook.react.bridge.Arguments;
 public class ExtplaneModule extends ReactContextBaseJavaModule {
     public static final String NAME = "Extplane";
 
-    private ReactContext rc;
+  private ReactContext mReactContext;
 
     public ExtplaneModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.rc = reactContext;
     }
 
     private ExtPlaneInterface iface = null;
@@ -39,6 +38,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
     reactContext
       .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
       .emit(eventName, params);
+    this.mReactContext = reactContext;
   }
 
     @Override
@@ -101,15 +101,18 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
     // Remove upstream listeners, stop unnecessary background tasks
     }
 
+    private void send(DataRef obj) {
+      WritableMap params = Arguments.createMap();
+      params.putString("datarefValue", "hello");
+      sendEvent(this.mReactContext, "DatarefUpdate", params);
+    }
+
     @ReactMethod
     public void observeDataRef(String dataref) {
        if (iface != null) {
-         ReactContext a = this.rc;
          Observer<DataRef> s = new Observer<DataRef>() {
            public void update(DataRef object) {
-             WritableMap params = Arguments.createMap();
-             params.putString("datarefValue", String.valueOf(object));
-             sendEvent(a, "DatarefUpdate", params);
+             send(object);
            }
          };
          iface.observeDataRef(dataref, s);

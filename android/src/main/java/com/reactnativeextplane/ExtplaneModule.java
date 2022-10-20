@@ -27,7 +27,8 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
   private ReactContext mReactContext;
 
     public ExtplaneModule(ReactApplicationContext reactContext) {
-        super(reactContext);
+      super(reactContext);
+      this.mReactContext = reactContext;
     }
 
     private ExtPlaneInterface iface = null;
@@ -38,7 +39,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
     reactContext
       .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
       .emit(eventName, params);
-    this.mReactContext = reactContext;
+
   }
 
     @Override

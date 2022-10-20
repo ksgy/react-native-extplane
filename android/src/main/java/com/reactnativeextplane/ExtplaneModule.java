@@ -104,7 +104,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
 
     private void send(DataRef obj) {
       WritableMap params = Arguments.createMap();
-      params.putString("datarefValue", "hello");
+      params.putString("datarefValue", obj.toString());
       sendEvent(this.mReactContext, "DatarefUpdate", params);
     }
 

@@ -27,6 +27,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
     public static final String NAME = "Extplane";
 
   private ReactContext mReactContext;
+  private Observer<DataRef> observer;
 
     public ExtplaneModule(ReactApplicationContext reactContext) {
       super(reactContext);
@@ -96,12 +97,17 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void addListener(String eventName) {
-    // Set up any upstream listeners or background tasks as necessary
+      // Set up any upstream listeners or background tasks as necessary
+      observer = new Observer<DataRef>() {
+        public void update(DataRef object) {
+          send(object);
+        }
+      };
     }
 
     @ReactMethod
     public void removeListeners(Integer count) {
-    // Remove upstream listeners, stop unnecessary background tasks
+      observer = null;
     }
 
     private void send(DataRef obj) {
@@ -113,20 +119,15 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void observeDataRef(String dataref) {
        if (iface != null) {
-         Observer<DataRef> s = new Observer<DataRef>() {
-           public void update(DataRef object) {
-             send(object);
-           }
-         };
-         iface.observeDataRef(dataref, s);
+         iface.observeDataRef(dataref, observer);
        }
      }
 
-//    @ReactMethod
-//    public void unObserveDataRef(String dataref) {
-//       if (iface != null) {
-//         iface.unObserveDataRef(dataref);
-//       }
-//     }
+    @ReactMethod
+    public void unObserveDataRef(String dataref) {
+       if (iface != null) {
+         iface.unObserveDataRef(dataref, observer);
+       }
+     }
 
 }

@@ -79,7 +79,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
        if (iface != null) {
          Observer<DataRef> s = new Observer<DataRef>() {
            public void update(DataRef object) {
-             callback.invoke(object);
+             callback.invoke("test");
            }
          };
          iface.observeDataRef(dataref, s);

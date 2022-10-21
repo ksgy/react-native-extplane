@@ -55,7 +55,7 @@ public class ExtPlaneInterface {
     private int port;
     private int poolSize = 2;
     private boolean isConnected = false;
-    private String message = "";
+    private String message = "not connected";
 
     public ExtPlaneInterface(String server, int port) {
 

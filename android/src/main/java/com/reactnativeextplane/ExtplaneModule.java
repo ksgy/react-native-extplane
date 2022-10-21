@@ -62,9 +62,13 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
     }
     @ReactMethod
     public boolean isConnected() throws Exception {
+      System.out.println("ReactMethod isConnected");
       if (iface != null) {
+        System.out.println("ReactMethod iface.isConnected()");
+        System.out.println(iface.isConnected());
         return iface.isConnected();
       } else {
+        System.out.println("ReactMethod iface.isConnected() FALSE");
         return false;
       }
     }

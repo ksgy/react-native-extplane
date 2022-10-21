@@ -5,6 +5,7 @@ export function start(ip: string, port: number = 51000) {
 }
 
 export function isConnected() {
+  console.log('Extplane.isConnected()', Extplane.isConnected()); // eslint-disable-line
   return Extplane.isConnected();
 }
 export function getMessage() {

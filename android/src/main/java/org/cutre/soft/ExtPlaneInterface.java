@@ -68,6 +68,7 @@ public class ExtPlaneInterface {
     }
 
     public boolean isConnected() {
+      System.out.println("android isConnected " + this.isConnected);
       return this.isConnected;
     }
 
@@ -146,6 +147,7 @@ public class ExtPlaneInterface {
     public void stop() {
         this.stopReceiving();
         this.stopSending();
+        this.isConnected = false;
     }
 
     public void observeDataRef(String dataRefName, Observer<DataRef> observer) {

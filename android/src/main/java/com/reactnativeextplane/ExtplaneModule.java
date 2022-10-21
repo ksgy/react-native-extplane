@@ -61,15 +61,11 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
        iface.start();
     }
     @ReactMethod
-    public boolean isConnected() {
-      System.out.println("ReactMethod isConnected");
+    public void isConnected(Promise promise) {
       if (iface != null) {
-        System.out.println("ReactMethod iface.isConnected()");
-        System.out.println(iface.isConnected());
-        return iface.isConnected();
+        promise.resolve(iface.isConnected());
       } else {
-        System.out.println("ReactMethod iface.isConnected() FALSE");
-        return false;
+        promise.resolve(false);
       }
     }
     @ReactMethod
@@ -77,7 +73,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
       if (iface != null) {
         promise.resolve(iface.getMessage());
       } else {
-        promise.resolve("");
+        promise.resolve("Not connected");
       }
     }
 

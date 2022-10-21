@@ -55,7 +55,7 @@ public class ExtPlaneInterface {
     private int port;
     private int poolSize = 2;
     private boolean isConnected = false;
-    private String message = "not connected";
+    private String message = "Not connected";
 
     public ExtPlaneInterface(String server, int port) {
 
@@ -68,7 +68,6 @@ public class ExtPlaneInterface {
     }
 
     public boolean isConnected() {
-      System.out.println("android isConnected " + this.isConnected);
       return this.isConnected;
     }
 

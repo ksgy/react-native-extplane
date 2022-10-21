@@ -4,6 +4,13 @@ export function start(ip: string, port: number = 51000) {
   Extplane.start(ip, port);
 }
 
+export function isConnected() {
+  return Extplane.isConnected();
+}
+export function getMessage() {
+  return Extplane.getMessage();
+}
+
 export function includeDataRef(dataRefName: string, precision: number = 0.1) {
   Extplane.includeDataRef(dataRefName, precision);
 }

@@ -54,7 +54,8 @@ public class ExtPlaneInterface {
     private String server;
     private int port;
     private int poolSize = 2;
-
+    private boolean isConnected = false;
+    private String message = "";
 
     public ExtPlaneInterface(String server, int port) {
 
@@ -64,6 +65,14 @@ public class ExtPlaneInterface {
         this.initDataRefRepository();
         this.initMessageRepository();
 
+    }
+
+    public boolean isConnected() {
+      return this.isConnected;
+    }
+
+    public String getMessage() {
+      return this.message;
     }
 
     public void excludeDataRef(String dataRefName) {
@@ -122,8 +131,12 @@ public class ExtPlaneInterface {
             this.connect();
             this.startSending();
             this.startReceiving();
+            this.isConnected = true;
+            this.message = "Connected";
         } catch(Exception e) {
             System.out.println("Error starting services." + e.toString());
+            this.isConnected = false;
+            this.message = "Error starting services." + e.toString();
             this.stopReceiving();
             this.stopSending();
             throw e;

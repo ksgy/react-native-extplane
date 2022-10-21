@@ -65,7 +65,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
       if (iface != null) {
         return iface.isConnected();
       } else {
-        return false
+        return false;
       }
     }
     @ReactMethod

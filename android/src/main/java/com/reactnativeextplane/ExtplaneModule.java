@@ -62,11 +62,19 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
     }
     @ReactMethod
     public boolean isConnected() throws Exception {
-      return iface.isConnected();
+      if (iface != null) {
+        return iface.isConnected();
+      } else {
+        return false
+      }
     }
     @ReactMethod
     public String getMessage() throws Exception {
-      return iface.getMessage();
+      if (iface != null) {
+        return iface.getMessage();
+      } else {
+        return "";
+      }
     }
     @ReactMethod
     public void includeDataRef(String dataref, Float precision) {

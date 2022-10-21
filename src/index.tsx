@@ -4,11 +4,10 @@ export function start(ip: string, port: number = 51000) {
   Extplane.start(ip, port);
 }
 
-export function isConnected() {
-  console.log('Extplane.isConnected()', Extplane.isConnected()); // eslint-disable-line
+export function isConnected(): Promise<boolean> {
   return Extplane.isConnected();
 }
-export function getMessage() {
+export function getMessage(): Promise<string> {
   return Extplane.getMessage();
 }
 

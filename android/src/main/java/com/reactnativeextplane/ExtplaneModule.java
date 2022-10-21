@@ -73,13 +73,14 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
       }
     }
     @ReactMethod
-    public String getMessage() {
+    public void getMessage(Promise promise) {
       if (iface != null) {
-        return iface.getMessage();
+        promise.resolve(iface.getMessage());
       } else {
-        return "";
+        promise.resolve("");
       }
     }
+
     @ReactMethod
     public void includeDataRef(String dataref, Float precision) {
        if (iface != null) {

@@ -26,7 +26,7 @@ import java.util.Arrays;
 public class ExtplaneModule extends ReactContextBaseJavaModule {
     public static final String NAME = "Extplane";
 
-  private ReactContext mReactContext;
+  private ReactApplicationContext mReactContext;
   private Observer<DataRef> observer = new Observer<DataRef>() {
     public void update(DataRef object) {
       send(object);
@@ -40,10 +40,10 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
 
     private ExtPlaneInterface iface = null;
 
-  private void sendEvent(ReactContext reactContext,
+  private void sendEvent(
                          String eventName,
                          @Nullable WritableMap params) {
-    reactContext
+    this.mReactContext
       .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
       .emit(eventName, params);
 
@@ -128,7 +128,7 @@ public class ExtplaneModule extends ReactContextBaseJavaModule {
     private void send(DataRef obj) {
       WritableMap params = Arguments.createMap();
       params.putString(obj.getName(), Arrays.toString(obj.getValue()));
-      sendEvent(this.mReactContext, "DatarefUpdate", params);
+      sendEvent("DatarefUpdate", params);
     }
 
     @ReactMethod
